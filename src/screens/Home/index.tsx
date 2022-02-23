@@ -1,12 +1,26 @@
+import {ScreenProps} from '@app/@types/navigation';
+import Post from '@app/components/Post';
+import StoriesSlider from '@app/components/StoriesSlider';
 import * as React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
-interface HomeScreenProps {}
+interface HomeScreenProps
+  extends ScreenProps<MainNavigationParamsList, 'Home'> {}
 
 const HomeScreen = (props: HomeScreenProps) => {
   return (
     <View style={styles.container}>
-      <Text>HomeScreen</Text>
+      <ScrollView>
+        <StoriesSlider />
+        <Post />
+      </ScrollView>
     </View>
   );
 };
@@ -15,8 +29,7 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // flex: 1,
+    backgroundColor: 'white',
   },
 });
