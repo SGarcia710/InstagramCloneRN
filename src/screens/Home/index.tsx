@@ -10,6 +10,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 interface HomeScreenProps
   extends ScreenProps<MainNavigationParamsList, 'Home'> {}
@@ -17,8 +18,11 @@ interface HomeScreenProps
 const HomeScreen = (props: HomeScreenProps) => {
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
         <StoriesSlider />
+
+        <Post />
+
         <Post />
       </ScrollView>
     </View>
@@ -29,7 +33,7 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     backgroundColor: 'white',
   },
 });

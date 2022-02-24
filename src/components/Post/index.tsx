@@ -8,7 +8,12 @@ import {
   Text,
   View,
 } from 'react-native';
-import Animated from 'react-native-reanimated';
+import Animated, {
+  interpolateColor,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
 
 interface PostProps {}
 
@@ -36,6 +41,22 @@ const POST: Post = {
         height: 375,
       },
     },
+    {
+      url: 'https://images.unsplash.com/photo-1645529324261-9f72a3bfe5fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=770&q=80',
+      type: 'image',
+      size: {
+        width: 375,
+        height: 375,
+      },
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1645529324261-9f72a3bfe5fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=770&q=80',
+      type: 'image',
+      size: {
+        width: 375,
+        height: 375,
+      },
+    },
   ],
   description: 'The game in Japan was amazing and I want to share some photos',
   place: {
@@ -44,6 +65,12 @@ const POST: Post = {
 };
 
 const Post = (props: Post) => {
+  const scrollX = useSharedValue(0);
+
+  const handleScroll = useAnimatedScrollHandler(event => {
+    scrollX.value = event.contentOffset.x;
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -75,48 +102,74 @@ const Post = (props: Post) => {
         </Pressable>
       </View>
 
-      <Animated.ScrollView
-        showsHorizontalScrollIndicator={false}
-        scrollEventThrottle={16}
-        pagingEnabled
-        horizontal>
-        {POST.media.map((e, i) => (
-          <Image
-            key={`MEDIA_${i}`}
-            style={{
-              width: scale(e.size.width),
-              height: scale(e.size.height),
-            }}
-            source={{uri: e.url}}
-          />
-        ))}
-      </Animated.ScrollView>
+      <View style={styles.mediaViewer}>
+        <Animated.ScrollView
+          bounces={false}
+          onScroll={handleScroll}
+          showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={16}
+          pagingEnabled
+          horizontal>
+          {POST.media.map((e, i) => (
+            <Image
+              key={`MEDIA_${i}`}
+              style={{
+                width: scale(e.size.width),
+                height: scale(e.size.height),
+              }}
+              source={{uri: e.url}}
+            />
+          ))}
+        </Animated.ScrollView>
+
+        <View style={styles.dots}>
+          {POST.media.map((e, i) => {
+            const _width = scale(e.size.width);
+            const inputRange = [(i - 1) * _width, i * _width, (i + 1) * _width];
+            const animatedStyles = useAnimatedStyle(() => {
+              return {
+                backgroundColor: interpolateColor(scrollX.value, inputRange, [
+                  '#CCC',
+                  '#3897F0',
+                  '#CCC',
+                ]),
+              };
+            });
+            return (
+              <Animated.View
+                key={`MEDIA_${i}`}
+                style={[styles.dot, animatedStyles]}
+              />
+            );
+          })}
+        </View>
+      </View>
 
       <View style={{paddingHorizontal: 15}}>
         <View style={styles.actionsBar}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Image
               style={{
-                width: 24,
-                height: 21,
+                width: scale(24),
+                height: scale(21),
                 resizeMode: 'contain',
-                marginRight: 17,
+                marginRight: scale(17),
               }}
               source={require('@app/assets/icons/LikeIcon.png')}
             />
             <Image
               style={{
-                width: 22,
-                height: 23,
+                width: scale(22),
+                height: scale(23),
                 resizeMode: 'contain',
-                marginRight: 17,
+                marginRight: scale(17),
               }}
               source={require('@app/assets/icons/CommentIcon.png')}
             />
             <Image
               style={{
-                width: 23,
-                height: 20,
+                width: scale(23),
+                height: scale(20),
                 resizeMode: 'contain',
               }}
               source={require('@app/assets/icons/MessangerIcon.png')}
@@ -125,8 +178,8 @@ const Post = (props: Post) => {
 
           <Image
             style={{
-              width: 21,
-              height: 24,
+              width: scale(21),
+              height: scale(24),
               resizeMode: 'contain',
             }}
             source={require('@app/assets/icons/SaveIcon.png')}
@@ -149,6 +202,14 @@ const Post = (props: Post) => {
         <Text style={styles.description}>
           <Text style={styles.descriptionUsername}>{POST.user.username} </Text>
           {POST.description}
+        </Text>
+
+        <Text
+          style={{
+            fontSize: scale(12),
+            color: 'rgba(0,0,0,0.4)',
+          }}>
+          2d ago
         </Text>
       </View>
     </View>
@@ -202,14 +263,13 @@ const styles = StyleSheet.create({
   actionsBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 12,
     marginBottom: 11,
   },
   description: {
     fontSize: scale(13),
     color: '#262626',
     letterSpacing: scale(-0.07),
+    marginBottom: scale(8),
   },
   descriptionUsername: {fontWeight: 'bold', letterSpacing: scale(-0.1)},
   likeImage: {
@@ -217,6 +277,22 @@ const styles = StyleSheet.create({
     height: scale(17),
     borderRadius: scale(17) / 2,
     marginRight: scale(6.5),
+  },
+  mediaViewer: {
+    alignItems: 'center',
+    marginBottom: scale(12),
+  },
+  dots: {
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: scale(-25),
+  },
+  dot: {
+    width: scale(6),
+    height: scale(6),
+    borderRadius: scale(6) / 2,
+    backgroundColor: 'rgba(0,0,0,0.15)',
+    marginHorizontal: scale(2),
   },
   likesContainer: {flexDirection: 'row', alignItems: 'center', marginBottom: 5},
 });

@@ -1,7 +1,9 @@
+import {ScreenProps} from '@app/@types/navigation';
 import * as React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-interface CreatePostScreenProps {}
+interface CreatePostScreenProps
+  extends ScreenProps<MainNavigationParamsList, 'Create Post'> {}
 
 const CreatePostScreen = (props: CreatePostScreenProps) => {
   return (
