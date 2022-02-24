@@ -1,0 +1,4 @@
+{
+    "version": "2022.02.14.00",
+    "error": "watchman::CommandValidationError: failed to validate command: unknown command │"
+}

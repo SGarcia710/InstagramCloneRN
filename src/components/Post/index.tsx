@@ -8,6 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import Animated from 'react-native-reanimated';
 
 interface PostProps {}
 
@@ -74,7 +75,7 @@ const Post = (props: Post) => {
         </Pressable>
       </View>
 
-      <ScrollView
+      <Animated.ScrollView
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={16}
         pagingEnabled
@@ -89,7 +90,7 @@ const Post = (props: Post) => {
             source={{uri: e.url}}
           />
         ))}
-      </ScrollView>
+      </Animated.ScrollView>
 
       <View style={{paddingHorizontal: 15}}>
         <View style={styles.actionsBar}>
