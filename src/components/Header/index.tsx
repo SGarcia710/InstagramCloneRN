@@ -1,12 +1,21 @@
 import {scale} from '@app/utils';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import * as React from 'react';
-import {StyleSheet, Text, SafeAreaView, Image, View} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  Image,
+  View,
+  Pressable,
+} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 interface HeaderProps {}
 
 const Header = (props: HeaderProps) => {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation<NavigationProp<RootNavigatorParmsList>>();
   return (
     <View
       style={[
@@ -15,17 +24,18 @@ const Header = (props: HeaderProps) => {
           paddingTop: insets.top,
         },
       ]}>
-      <Image
-        style={[
-          styles.icon,
-          {
-            position: 'absolute',
-            left: scale(12),
-            bottom: scale(12),
-          },
-        ]}
-        source={require('@app/assets/icons/CameraIcon.png')}
-      />
+      <Pressable
+        style={{
+          position: 'absolute',
+          left: scale(12),
+          bottom: scale(12),
+        }}
+        onPress={() => navigation.navigate('StoryCreator')}>
+        <Image
+          style={[styles.icon]}
+          source={require('@app/assets/icons/CameraIcon.png')}
+        />
+      </Pressable>
       <Image
         style={styles.logo}
         source={require('@app/assets/images/InstagramLogo.png')}
