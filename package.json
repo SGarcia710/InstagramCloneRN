@@ -9,8 +9,10 @@
     "postinstall": "npx pod-install ios"
   },
   "dependencies": {
-    "@giphy/react-native-sdk": "^1.6.0",
-    "@react-native-community/blur": "^3.6.0",
+    "@giphy/react-native-sdk": "1.6.0",
+    "@react-native-community/blur": "3.6.0",
+    "@react-native-firebase/app": "^14.5.0",
+    "@react-native-firebase/auth": "^14.5.0",
     "@react-navigation/bottom-tabs": "6.2.0",
     "@react-navigation/native": "6.0.8",
     "@react-navigation/native-stack": "6.5.0",
@@ -18,7 +20,7 @@
     "react-native": "0.66.2",
     "react-native-gesture-handler": "2.2.0",
     "react-native-linear-gradient": "2.5.6",
-    "react-native-modalize": "^2.0.13",
+    "react-native-modalize": "2.0.13",
     "react-native-reanimated": "2.2.4",
     "react-native-safe-area-context": "3.4.1",
     "react-native-screens": "3.12.0"

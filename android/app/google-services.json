@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "163711233310",
+    "project_id": "instagramclonazo",
+    "storage_bucket": "instagramclonazo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163711233310:android:2d38d472bb97824dffad0f",
+        "android_client_info": {
+          "package_name": "com.instagramclonrn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163711233310-ook9fh9iqfbn9bi5ikbgjj7cltmapdd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvRwnua7cE66QwvbWrt1PtrvqwtD1AzGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163711233310-ook9fh9iqfbn9bi5ikbgjj7cltmapdd2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "163711233310-l43etv3gt8f30uto4tmkq8972i0uqq42.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sgarcia.instagramclonrn"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163711233310:android:8331b9cbfe75c69bffad0f",
+        "android_client_info": {
+          "package_name": "com.sgarcia.instagramclon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163711233310-ook9fh9iqfbn9bi5ikbgjj7cltmapdd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvRwnua7cE66QwvbWrt1PtrvqwtD1AzGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163711233310-ook9fh9iqfbn9bi5ikbgjj7cltmapdd2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "163711233310-l43etv3gt8f30uto4tmkq8972i0uqq42.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sgarcia.instagramclonrn"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

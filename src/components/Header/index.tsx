@@ -10,6 +10,7 @@ import {
   Pressable,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import FirebaseAuth from '@react-native-firebase/auth';
 
 interface HeaderProps {}
 
@@ -52,10 +53,13 @@ const Header = (props: HeaderProps) => {
           style={[styles.icon, {marginRight: scale(18)}]}
           source={require('@app/assets/icons/IGTVIcon.png')}
         />
-        <Image
-          style={styles.icon}
-          source={require('@app/assets/icons/MessangerIcon.png')}
-        />
+
+        <Pressable onPress={FirebaseAuth().signOut}>
+          <Image
+            style={styles.icon}
+            source={require('@app/assets/icons/MessangerIcon.png')}
+          />
+        </Pressable>
       </View>
     </View>
   );
